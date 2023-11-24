@@ -490,7 +490,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1574199082
+--- !u!1 &1332261426
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -498,39 +498,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1574199088}
-  - component: {fileID: 1574199087}
-  - component: {fileID: 1574199086}
-  - component: {fileID: 1574199085}
-  - component: {fileID: 1574199084}
-  - component: {fileID: 1574199083}
+  - component: {fileID: 1332261432}
+  - component: {fileID: 1332261431}
+  - component: {fileID: 1332261430}
+  - component: {fileID: 1332261429}
+  - component: {fileID: 1332261428}
+  - component: {fileID: 1332261427}
   m_Layer: 0
-  m_Name: enemy
+  m_Name: Necromancer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1574199083
+--- !u!114 &1332261427
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574199082}
+  m_GameObject: {fileID: 1332261426}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8dc1d0e71d5b2c4f8037343f324e7a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 75887f6bf7caa1940b862b8933888c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1924163775}
---- !u!195 &1574199084
+  enemyPrefab: {fileID: 7793663060155857903, guid: 03e02e38c59ae9b49b9d7bb97cf682a7, type: 3}
+--- !u!195 &1332261428
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574199082}
+  m_GameObject: {fileID: 1332261426}
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
@@ -546,13 +546,13 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!136 &1574199085
+--- !u!136 &1332261429
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574199082}
+  m_GameObject: {fileID: 1332261426}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -569,13 +569,13 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1574199086
+--- !u!23 &1332261430
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574199082}
+  m_GameObject: {fileID: 1332261426}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -589,7 +589,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bf10046c3a3b3924d851b32a6fda99a7, type: 2}
+  - {fileID: 2100000, guid: 537331c52a2945d4283273f834a828b7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -611,21 +611,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1574199087
+--- !u!33 &1332261431
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574199082}
+  m_GameObject: {fileID: 1332261426}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1574199088
+--- !u!4 &1332261432
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574199082}
+  m_GameObject: {fileID: 1332261426}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 19.8, z: 0}
@@ -784,8 +784,8 @@ GameObject:
   - component: {fileID: 1924163773}
   - component: {fileID: 1924163772}
   m_Layer: 0
-  m_Name: player
-  m_TagString: Untagged
+  m_Name: Player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -887,5 +887,5 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 1887961713}
   - {fileID: 959036302}
-  - {fileID: 1574199088}
+  - {fileID: 1332261432}
   - {fileID: 1924163775}
