@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController characterController;
-    public float gravity = 20.0f; 
+    public float gravity = 10.0f; 
     public float verticalVelocity = 0.0f;
     public float speed = 70;
     public Vector2 movement;
@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     
-    void Update()
+    void FixedUpdate()
     {
         // Verifica se o jogador está no chão
         if (characterController.isGrounded )
@@ -31,18 +31,15 @@ public class PlayerMovement : MonoBehaviour
             Vector3 moveDirection = new Vector3(movement.x, 0, movement.y);
 
             // Aplica o movimento à posição do jogador
-            characterController.Move(moveDirection * speed * Time.deltaTime);
+            characterController.Move(moveDirection * speed * Time.fixedDeltaTime);
 
             // Zera a velocidade vertical se estivermos no chão
             verticalVelocity = 0;
         }
-        else
-        {
             // Se não estiver no chão, aplica a gravidade
-            verticalVelocity -= gravity * Time.deltaTime;
-        }
+            verticalVelocity -= gravity * Time.fixedDeltaTime;
 
             // Aplica a velocidade vertical à posição do jogador
-            characterController.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
+            characterController.Move(new Vector3(0, verticalVelocity, 0) * Time.fixedDeltaTime);
     }
 }
