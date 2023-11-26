@@ -1,13 +1,19 @@
 using UnityEngine;
+using System.Collections;
 
 public class Necromancer : MonoBehaviour
 {
     //int vida = 100; --> vida do necromante em si
     public Enemy enemyPrefab;
     Enemy enemy;
+    public Animator anim;
 
     void Start(){
-        Invoke("SpawnWaves", 2f);
+        Invoke("callingWaveAnim", 3f); //chama a animação ao inves do metodo de spawnar pq a animação tem um evento de chamar o spawn
+    }
+
+    void callingWaveAnim(){
+        anim.SetTrigger("callWave");
     }
 
     public void SpawnWaves(){
