@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Verifica se o jogador está no chão
-        if (!characterController.isGrounded )
+        if (characterController.isGrounded )
         {
             // Obtém a direção do movimento
             Vector3 moveDirection = new Vector3(movement.x, 0, movement.y);
