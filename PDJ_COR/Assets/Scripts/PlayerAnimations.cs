@@ -6,9 +6,19 @@ public class PlayerAnimations : MonoBehaviour
 {
     public Animator anim;
 
-    //if gotHit {anim.SetTrigger("getHit")}
-    //if attackMelee {anim.SetTrigger("attack1")}
-    //if attackThrow {anim.SetTrigger("attack2")}
-    //if dead{anim.SetTrigger("death")}
+    void Update(){
+        if(Input.GetKeyDown(KeyCode.U)){
+            anim.SetTrigger("attack1");
+        }
+        if(Input.GetKeyDown(KeyCode.I)){
+            anim.SetTrigger("attack2");
+        }
+        if(Input.GetKeyDown(KeyCode.O)){
+            anim.SetTrigger("getHit");
+        }
+        if(Input.GetKeyDown(KeyCode.P)){
+            anim.SetTrigger("death");
+        }
+    }
 
 }
