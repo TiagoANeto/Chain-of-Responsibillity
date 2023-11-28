@@ -12,7 +12,11 @@ public class temp_PMovement : MonoBehaviour
     public Vector2 movement;
     public Animator anim;
     private Vector3 rotation;
-    public float rotationSpeed = 2.0f; // Adjust this value to control the rotation speed
+    public Transform player;
+    public float rotationSpeed = 5.0f; 
+    public Ray ray;
+    public RaycastHit hit; 
+    public bool freezeY = true;
     
     void Awake()
     {
@@ -29,24 +33,37 @@ public class temp_PMovement : MonoBehaviour
         // Verifica se o jogador está no chão
         if (characterController.isGrounded)
         {
-            //float mouseX = Input.GetAxis("Mouse X");
-            rotation = new Vector3(0, Input.GetAxis("Mouse X") * 60f * Time.deltaTime, 0);
-            //transform.Rotate(0, rotationAmount, 0);
-
             // Obtém a direção do movimento
             Vector3 moveDirection = new Vector3(movement.x, 0, movement.y);
 
             // Aplica o movimento à posição do jogador
             characterController.Move(moveDirection * speed * Time.deltaTime);
-            transform.Rotate(rotation);
+            
 
-            // Zera a velocidade vertical se estivermos no chão
-            verticalVelocity = 0;
             anim.SetFloat("walkIdle", moveDirection.magnitude);
         }
-        // Se não estiver no chão, aplica a gravidade
+
         verticalVelocity -= gravity * Time.deltaTime;
-        // Aplica a velocidade vertical à posição do jogador
+       
         characterController.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
+
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if(!Physics.Raycast(ray, out hit)){
+            return;
+        }
+
+
+        Vector3 pos = hit.point - player.position;
+
+        if(freezeY){
+            pos.y = 0;
+        }
+
+        Quaternion rot = Quaternion.LookRotation(pos);
+
+        player.rotation = Quaternion.Lerp(player.rotation, rot, rotationSpeed * Time.deltaTime);
+        
     }
+
 }
