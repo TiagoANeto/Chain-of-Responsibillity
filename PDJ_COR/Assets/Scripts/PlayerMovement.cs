@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 70;
     public Vector2 movement;
 
+    public GameObject lookAt;
+
+
     
     void Awake()
     {
@@ -21,7 +24,12 @@ public class PlayerMovement : MonoBehaviour
         movement = value.ReadValue<Vector2>();
     }
 
-    
+    void Update()
+    {
+        Look();
+    }
+
+
     void FixedUpdate()
     {
         // Verifica se o jogador está no chão
@@ -41,5 +49,34 @@ public class PlayerMovement : MonoBehaviour
 
             // Aplica a velocidade vertical à posição do jogador
             characterController.Move(new Vector3(0, verticalVelocity, 0) * Time.fixedDeltaTime);
+
+           
     }
+
+
+    void Look()
+    {
+        // Obtém a posição do mouse no mundo
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // Calcula a direção do objeto para o mouse
+        Vector3 lookDir = mousePos - transform.position;
+
+        // Calcula o ângulo de rotação em radianos
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x);
+
+        // Converte o ângulo para graus
+        float angleDegrees = angle * Mathf.Rad2Deg;
+
+        // Rotaciona o objeto na direção do mouse
+        transform.rotation = Quaternion.Euler(new Vector3(0, angleDegrees,0 ));
+    }
+
+    // private void Attack(){
+    //    Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
+
+    //    foreach(Collider enemy in hitEnemies){
+    //     Debug.Log("We hit" + enemy.name);
+    //    }
+    // }
 }
