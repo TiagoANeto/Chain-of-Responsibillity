@@ -44,13 +44,18 @@ public class PlayerMovement : MonoBehaviour
             // Zera a velocidade vertical se estivermos no chão
             verticalVelocity = 0;
         }
-            // Se não estiver no chão, aplica a gravidade
-            verticalVelocity -= gravity * Time.fixedDeltaTime;
+        // Se não estiver no chão, aplica a gravidade
+        verticalVelocity -= gravity * Time.fixedDeltaTime;
 
+<<<<<<< HEAD
             // Aplica a velocidade vertical à posição do jogador
             characterController.Move(new Vector3(0, verticalVelocity, 0) * Time.fixedDeltaTime);
 
            
+=======
+        // Aplica a velocidade vertical à posição do jogador
+        characterController.Move(new Vector3(0, verticalVelocity, 0) * Time.fixedDeltaTime);
+>>>>>>> a28e5b14454fb7a23c04355536f07faf3f1cf4e1
     }
 
 
