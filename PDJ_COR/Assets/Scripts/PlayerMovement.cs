@@ -12,7 +12,9 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject lookAt;
 
-
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public LayerMask enemyLayers;
     
     void Awake()
     {
@@ -69,11 +71,11 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, angleDegrees,0 ));
     }
 
-    // private void Attack(){
-    //    Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
+    private void Attack(){
+       Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
 
-    //    foreach(Collider enemy in hitEnemies){
-    //     Debug.Log("We hit" + enemy.name);
-    //    }
-    // }
+       foreach(Collider enemy in hitEnemies){
+        Debug.Log("We hit" + enemy.name);
+       }
+    }
 }

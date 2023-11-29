@@ -18,6 +18,10 @@ public class temp_PMovement : MonoBehaviour
     public RaycastHit hit; 
     public bool freezeY = true;
     
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public LayerMask enemyLayers;
+
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -64,6 +68,22 @@ public class temp_PMovement : MonoBehaviour
 
         player.rotation = Quaternion.Lerp(player.rotation, rot, rotationSpeed * Time.deltaTime);
         
+    }
+
+    private void Attack()
+    {
+       Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
+
+       foreach(Collider enemy in hitEnemies){
+        Debug.Log("We hit" + enemy.name);
+       }
+    }
+
+    void OnDrawGizmosSelected(){
+        if(attackPoint==null){
+            return;
+        }
+            Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
 }
