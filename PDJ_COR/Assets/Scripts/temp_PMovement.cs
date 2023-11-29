@@ -17,15 +17,19 @@ public class temp_PMovement : MonoBehaviour
     public Ray ray;
     public RaycastHit hit; 
     public bool freezeY = true;
+    public Quaternion rot;
     
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
 
+    
+
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
     }
+
     public void SetMove(InputAction.CallbackContext value)
     {
         movement = value.ReadValue<Vector2>();
@@ -64,19 +68,21 @@ public class temp_PMovement : MonoBehaviour
             pos.y = 0;
         }
 
-        Quaternion rot = Quaternion.LookRotation(pos);
+        rot = Quaternion.LookRotation(pos);
 
-        //player.rotation = Quaternion.Lerp(player.rotation, rot, rotationSpeed * Time.deltaTime);
         
     }
 
-    private void Attack()
+    public void Attack(InputAction.CallbackContext button)
     {
-       Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
+        player.rotation = Quaternion.Lerp(player.rotation, rot, rotationSpeed * Time.deltaTime);
+        
+        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
 
-       foreach(Collider enemy in hitEnemies){
-        Debug.Log("We hit" + enemy.name);
-       }
+        foreach(Collider enemy in hitEnemies)
+        {
+            Debug.Log("We hit " + enemy.name);
+        }
     }
 
     void OnDrawGizmosSelected(){
