@@ -66,7 +66,7 @@ public class temp_PMovement : MonoBehaviour
 
         Quaternion rot = Quaternion.LookRotation(pos);
 
-        player.rotation = Quaternion.Lerp(player.rotation, rot, rotationSpeed * Time.deltaTime);
+        //player.rotation = Quaternion.Lerp(player.rotation, rot, rotationSpeed * Time.deltaTime);
         
     }
 
