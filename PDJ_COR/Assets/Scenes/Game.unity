@@ -1088,7 +1088,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1721587517403622, guid: c6295e3ac14276d44a00c6e1c7860934, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4176489301195308, guid: c6295e3ac14276d44a00c6e1c7860934, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2301,6 +2301,7 @@ MonoBehaviour:
   anim: {fileID: 70340596}
   player: {fileID: 1189544326}
   rotationSpeed: 1000
+  moveRotationSpeed: 10
   freezeY: 1
   rot: {x: 0, y: 0, z: 0, w: 0}
   attackPoint: {fileID: 792774690}
