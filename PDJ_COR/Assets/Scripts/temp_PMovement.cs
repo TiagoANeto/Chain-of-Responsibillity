@@ -24,7 +24,13 @@ public class temp_PMovement : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
 
+    public float dashCooldown = 0f; // Tempo de espera entre dashes
+    public float dashDuration = 1f; // Duração do dash
+    public float dashSpeed = 150.0f; // Velocidade do dash
+    private bool canDash = true; // Indica se o jogador pode dar um dash
+    public float dashDistance = 3.0f;
     
+    public Vector3 moveDirection;
 
     void Awake()
     {
@@ -43,7 +49,7 @@ public class temp_PMovement : MonoBehaviour
     if (characterController.isGrounded)
     {
         // Obtém a direção do movimento
-        Vector3 moveDirection = new Vector3(movement.x, 0, movement.y);
+        moveDirection = new Vector3(movement.x, 0, movement.y);
 
         // Se houver movimento, rotaciona o jogador suavemente na direção do movimento
         if (moveDirection.magnitude > 0.1f)
@@ -63,7 +69,7 @@ public class temp_PMovement : MonoBehaviour
     characterController.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
 
 
-    ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    ray = Camera.main.ScreenPointToRay(Input.mousePosition); //pega a poisiçaõ do mouse pra poder rotacionar o jogador quando clicar
 
     if (!Physics.Raycast(ray, out hit))
     {
@@ -86,13 +92,15 @@ public class temp_PMovement : MonoBehaviour
         {
             player.rotation = Quaternion.Lerp(player.rotation, rot, rotationSpeed * Time.deltaTime);
             
-            Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
+            Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers); //coloca todos os inimigos colididos dentro de um array
 
-            foreach(Collider enemy in hitEnemies)
+            foreach(Collider enemy in hitEnemies) //causa dano à todos os inimigos no array
             {
                 Debug.Log("We hit " + enemy.name);
             }
         }
+
+        //colocar animação de ataque basico e fazer com que a movimentação so volte a ocorrer quando a animação for finalizada
     }
 
     void OnDrawGizmosSelected()
@@ -101,6 +109,38 @@ public class temp_PMovement : MonoBehaviour
             return;
         }
             Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    public void Dash(InputAction.CallbackContext context)
+    {
+        if (context.started && canDash) // A ação de dash foi iniciada e o jogador pode dar um dash
+        {         
+            StartCoroutine(DashRoutine());
+        }
+    }
+
+    private IEnumerator DashRoutine()
+    {
+        canDash = false; // Impede que o jogador dê um dash enquanto o cooldown estiver ativo
+
+        float timer = 0.0f;
+        float originalSpeed = speed; // Salva a velocidade original do jogador
+        speed = dashSpeed; // Aumenta a velocidade para o dash
+
+        while (timer < dashDuration)
+        {
+            Debug.Log("dash");
+            Vector3 dashVector = moveDirection * dashDistance * 0.01f;
+            characterController.Move(dashVector);
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        speed = originalSpeed; // Restaura a velocidade original após o dash
+        yield return new WaitForSeconds(1);
+
+        canDash = true; // Permite que o jogador dê um novo dash após o cooldown
     }
 
 }
