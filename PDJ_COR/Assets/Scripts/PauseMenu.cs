@@ -8,6 +8,8 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject panelPause;
     public GameObject panelOptions;
+    public GameObject panelSkills;
+    public GameObject panelFire;
 
     //Passando o contexto do que vai acontecer ao pressionar a tecla ESC
     public void Pause(InputAction.CallbackContext context)
@@ -35,6 +37,21 @@ public class PauseMenu : MonoBehaviour
     {
         panelPause.SetActive(false);
         panelOptions.SetActive(true);
+    }
+
+    public void CloseFire()
+    {
+        panelSkills.SetActive(false);
+    }
+
+     public void Cheat(InputAction.CallbackContext context)
+    {
+        panelFire.SetActive(true);
+    }
+
+    public void CheatOff()
+    {
+        panelFire.SetActive(false);
     }
 
     public void QuitMenu()

@@ -29,10 +29,7 @@ public class temp_PMovement : MonoBehaviour
     public float dashDuration = 1f; // Duração do dash
     public float dashSpeed = 150.0f; // Velocidade do dash
     private bool canDash = true; // Indica se o jogador pode dar um dash
-    public float dashDistance = 3.0f;
-
-    public GameObject fireball;
-    
+    public float dashDistance = 3.0f; 
     public Vector3 moveDirection;
 
     void Awake()
@@ -43,13 +40,6 @@ public class temp_PMovement : MonoBehaviour
     public void SetMove(InputAction.CallbackContext value)
     {
         movement = value.ReadValue<Vector2>();
-    }
-
-    void FixedUpdate()
-    { 
-
-        fireball.transform.position += fireball.transform.forward * Time.deltaTime * 10;
-
     }
     void Update()
 {
@@ -109,13 +99,6 @@ public class temp_PMovement : MonoBehaviour
             }
         }
     }
-
-    // public void Fireball(InputAction.CallbackContext context){
-    //     if(context.started){
-    //         Instantiate(fireball, attackPoint.position, attackPoint.rotation);
-    //         //Vector3 dir = new Vector3();
-    //     }
-    // }
 
     void OnDrawGizmosSelected()
     {

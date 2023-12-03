@@ -15161,6 +15161,7 @@ GameObject:
   - component: {fileID: 95894034666125936}
   - component: {fileID: 4118385277717462880}
   - component: {fileID: 8068951100244975775}
+  - component: {fileID: 3592542603971730291}
   m_Layer: 6
   m_Name: Necromancer
   m_TagString: Untagged
@@ -15246,6 +15247,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7, y: 2.3376853, z: 0.58}
   m_Center: {x: -0, y: 0.6688423, z: 0}
+--- !u!114 &3592542603971730291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721587517403622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b77fef1a4548146be7273a5f315f81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energy: 60
+  value: 0
 --- !u!1 &1721719438690148
 GameObject:
   m_ObjectHideFlags: 0
