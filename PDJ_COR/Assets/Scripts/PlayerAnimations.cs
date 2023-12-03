@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerAnimations : MonoBehaviour
 {
     public Animator anim;
-
-    void Update(){
-        if(Input.GetKeyDown(KeyCode.U)){
-            anim.SetTrigger("death");
-        }
+    public void Dead(){
+        //SceneManager.LoadScene("gameOver");
+        HUDManager.instance.YouDied();
+        Time.timeScale = 0.0f;
+        Debug.Log("você morreu!");
     }
 
 }

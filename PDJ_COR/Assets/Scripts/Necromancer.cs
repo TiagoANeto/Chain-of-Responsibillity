@@ -17,7 +17,7 @@ public class Necromancer : MonoBehaviour
     }
 
     public void SpawnWaves(){
-        int x = Random.Range(10,21); //numero de inimigos que serao spawnados
+        int x = Random.Range(5,9); //numero de inimigos que serao spawnados
 
         for(int i = 0; i <= x; i++){
             enemy = Instantiate<Enemy>(enemyPrefab, transform.position, transform.rotation); //instancia um objeto ja do tipo Enemy

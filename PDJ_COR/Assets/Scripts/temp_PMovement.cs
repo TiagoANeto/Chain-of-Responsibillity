@@ -23,12 +23,15 @@ public class temp_PMovement : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
+    public int damage = 20;
 
     public float dashCooldown = 0f; // Tempo de espera entre dashes
     public float dashDuration = 1f; // Duração do dash
     public float dashSpeed = 150.0f; // Velocidade do dash
     private bool canDash = true; // Indica se o jogador pode dar um dash
     public float dashDistance = 3.0f;
+
+    public GameObject fireball;
     
     public Vector3 moveDirection;
 
@@ -42,7 +45,12 @@ public class temp_PMovement : MonoBehaviour
         movement = value.ReadValue<Vector2>();
     }
 
-    
+    void FixedUpdate()
+    { 
+
+        fireball.transform.position += fireball.transform.forward * Time.deltaTime * 10;
+
+    }
     void Update()
 {
     // Verifica se o jogador está no chão
@@ -93,15 +101,21 @@ public class temp_PMovement : MonoBehaviour
             player.rotation = Quaternion.Lerp(player.rotation, rot, rotationSpeed * Time.deltaTime);
             
             Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers); //coloca todos os inimigos colididos dentro de um array
+            anim.SetTrigger("attack");
 
             foreach(Collider enemy in hitEnemies) //causa dano à todos os inimigos no array
             {
-                Debug.Log("We hit " + enemy.name);
+                enemy.GetComponent<Enemy>().TakeDamage(damage);
             }
         }
-
-        //colocar animação de ataque basico e fazer com que a movimentação so volte a ocorrer quando a animação for finalizada
     }
+
+    // public void Fireball(InputAction.CallbackContext context){
+    //     if(context.started){
+    //         Instantiate(fireball, attackPoint.position, attackPoint.rotation);
+    //         //Vector3 dir = new Vector3();
+    //     }
+    // }
 
     void OnDrawGizmosSelected()
     {

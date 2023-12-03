@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HUDManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static HUDManager instance;
-    public GameObject panelGameOver;
-    public Text txtLife;
+    public static GameManager instance;
 
     void Awake(){
         if(instance == null){ // instancia do singleton HUDmanager
@@ -18,13 +16,7 @@ public class HUDManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void UpdateLife(int value){
-        txtLife.text = "Life: " + value;
+    void Start(){
+        HUDManager.instance.txtLife.text = "Life: " + 100;
     }
-
-    public void YouDied(){
-        panelGameOver.SetActive(true);
-    }
-
-
 }
